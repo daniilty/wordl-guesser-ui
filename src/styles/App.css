@@ -1,4 +1,18 @@
+.possible {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
 .possible_list {
   color: white;
   margin-bottom: 15%;
+  column-count: 3;
+  column-gap: 40px;
+}
+
+.possible_list li {
+  font-size: 1.5rem;
 }

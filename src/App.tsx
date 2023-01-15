@@ -48,6 +48,8 @@ function App() {
     <li key={i}>{v}</li>
   ));
 
+  const possibleHeader = possibleList.length !== 0 ? <h1> Возможные совпадения:</h1> : <h1>Нет совпадений</h1>;
+
   return (
     <div className="App">
       <InputBox
@@ -120,9 +122,12 @@ function App() {
 
         onValueChange(key, i);
       }} />
-      <ul className="possible_list">
-        {possibleList}
-      </ul>
+      <div className="possible">
+        {possibleHeader}
+        <ul className="possible_list">
+          {possibleList}
+        </ul>
+      </div>
     </div>
   );
 }
