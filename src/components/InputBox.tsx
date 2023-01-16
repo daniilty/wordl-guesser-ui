@@ -33,6 +33,7 @@ export const InputBox = (props: InputBoxProps) => {
           }
 
           if (letter.val === ANY) {
+            props.onFocusChange(i);
             return;
           }
 
@@ -48,7 +49,7 @@ export const InputBox = (props: InputBoxProps) => {
         }}
         style={{
           backgroundColor: getLetterBackgroundColor(letter),
-          color: getLetterColor(letter)
+          color: 'white'
         }}
         key={i}
         className="input_box"
@@ -75,20 +76,13 @@ export const newDefaultLetter = (val: string): Letter => {
 
 const getLetterBackgroundColor = (letter: Letter): string => {
   if (letter.isFocused) {
-    return 'gray';
+    return 'rgba(255, 255, 255, 0.2)';
   }
 
   if (letter.val === ANY) {
-    return 'white';
+    return 'rgba(255, 255, 255, 0.5)';
   }
 
-  return letter.isInPlace ? 'green' : 'red';
+  return letter.isInPlace ? 'rgba(0, 255, 0, 0.2)' : 'rgba(255, 0, 0, 0.2)';
 }
 
-const getLetterColor = (letter: Letter): string => {
-  if (letter.val === ANY) {
-    return 'black';
-  }
-
-  return 'white';
-}
