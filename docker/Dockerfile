@@ -1,4 +1,4 @@
-FROM node:17.3-stretch
+FROM node:19.4.0-buster
 
 WORKDIR /app
 
