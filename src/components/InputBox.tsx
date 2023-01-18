@@ -15,37 +15,54 @@ export type Letter = {
 }
 
 export const InputBox = (props: InputBoxProps) => {
+  const handleUnfocused = (i: number) => {
+    const latestFocused = props.letters.findIndex((el) => {
+      return el.isFocused
+    })
+
+    if (latestFocused !== -1) {
+      props.onFocusChange(latestFocused);
+    }
+
+    props.onFocusChange(i);
+  }
+
+  const handleAny = (i: number) => {
+    props.onFocusChange(i);
+  }
+
+  const handleNotInPlace = (i: number, letter: Letter) => {
+    props.onValueChange(ANY, i);
+    props.onChangeInPlace(!letter.isInPlace, i);
+  }
+
+  const handleDefault = (i: number, letter: Letter) => {
+    props.onChangeInPlace(!letter.isInPlace, i);
+  }
+
   const boxes = props.letters.map((letter, i) => {
     return (
       <button
         onClick={() => {
           if (!letter.isFocused) {
-            const latestFocused = props.letters.findIndex((el) => {
-              return el.isFocused
-            })
+            handleUnfocused(i);
 
-            if (latestFocused !== -1) {
-              props.onFocusChange(latestFocused);
-            }
-
-            props.onFocusChange(i);
             return;
           }
 
           if (letter.val === ANY) {
-            props.onFocusChange(i);
+            handleAny(i);
+
             return;
           }
 
           if (!letter.isInPlace) {
-            props.onValueChange(ANY, i);
-            props.onChangeInPlace(!letter.isInPlace, i);
+            handleNotInPlace(i, letter);
 
             return;
           }
 
-          props.onChangeInPlace(!letter.isInPlace, i);
-          return;
+          handleDefault(i, letter);
         }}
         style={{
           backgroundColor: getLetterBackgroundColor(letter),

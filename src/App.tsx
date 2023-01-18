@@ -3,6 +3,7 @@ import './styles/App.css';
 import { InputBox, Letter, newDefaultLetter } from './components/InputBox';
 import { Keyboard } from './components/Keyboard';
 import { ANY, ENTER_KEY, DELETE_KEY, ADD_KEY } from './components/common';
+import { PacmanLoader } from 'react-spinners';
 import { find } from './api/find';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [ignored, setIgnored] = useState<string[]>([]);
   const [notInPlace, setNotInPlace] = useState<string[]>([]);
   const [possibleValues, setPossibleValues] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const l = Array.from(letters);
 
@@ -60,6 +62,7 @@ function App() {
       />
       <Keyboard ignoredMap={ignoredMap} notInPlaceMap={notInPlaceMap} onKeyPress={(key: string) => {
         if (key === ENTER_KEY) {
+          setIsLoading(true);
           find({
             ignored: ignored.join(''),
             guessed: notInPlace.join(''),
@@ -67,8 +70,10 @@ function App() {
             limit: MAX_ELEMENTS
           }).then((data) => {
             setPossibleValues(data);
+            setIsLoading(false);
           }).catch((err) => {
             console.error(err);
+            setIsLoading(false);
           })
 
           return;
@@ -124,6 +129,9 @@ function App() {
       }} />
       <div className="possible">
         {possibleHeader}
+        <div className="spinner_wrapper">
+          <PacmanLoader loading={isLoading} color="white" size={20} />
+        </div>
         <ul className="possible_list">
           {possibleList}
         </ul>
