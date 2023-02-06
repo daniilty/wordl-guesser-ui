@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
+:root {
+  --device-width: 100%;
+}
+
 body {
   margin: 0;
   background-color: black;
   font-family: 'Inter', sans-serif;
+  width: var(--device-width);
 }
-

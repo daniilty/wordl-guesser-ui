@@ -1,3 +1,9 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .possible {
   display: flex;
   flex-direction: column;

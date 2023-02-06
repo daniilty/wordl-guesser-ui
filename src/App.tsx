@@ -18,6 +18,14 @@ function App() {
 
   const l = Array.from(letters);
 
+  const deviceWidth = () => {
+    const doc = document.documentElement
+    doc.style.setProperty('--device-width', `${window.innerWidth}px`)
+  }
+
+  window.addEventListener('resize', deviceWidth)
+  deviceWidth()
+
   const onFocusChange = (pos: number) => {
     l[pos].isFocused = !l[pos].isFocused;
     setLetters(l);
