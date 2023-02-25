@@ -5,8 +5,15 @@
 }
 
 body {
+  text-align: center;
   margin: 0;
   background-color: black;
   font-family: 'Inter', sans-serif;
   width: var(--device-width);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

@@ -17,8 +17,32 @@
   margin-bottom: 15%;
   column-count: 3;
   column-gap: 40px;
+  padding: 0;
 }
 
 .possible_list li {
   font-size: 1.5rem;
+  list-style: none;
 }
+
+.emoji_overlay {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes color {
+  0%   { background: #33CCCC; }
+  20%  { background: #33CC36; }
+  40%  { background: #B8CC33; }
+  60%  { background: #FCCA00; }
+  80%  { background: #33CC36; }
+  100% { background: #33CCCC; }
+}
+
+.rainbow {
+  background: #33CCCC;
+  animation: color 4s infinite linear;
+}
+

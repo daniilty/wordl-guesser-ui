@@ -5,6 +5,8 @@ import { Keyboard } from './components/Keyboard';
 import { ANY, ENTER_KEY, DELETE_KEY, ADD_KEY } from './components/common';
 import { PacmanLoader } from 'react-spinners';
 import { find } from './api/find';
+import { isPartyHard, togglePartyHard } from './storage/partyhard';
+import { Button } from './components/Button';
 
 function App() {
   const MAX_LEN = 24;
@@ -15,6 +17,13 @@ function App() {
   const [notInPlace, setNotInPlace] = useState<string[]>([]);
   const [possibleValues, setPossibleValues] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isParty, setIsParty] = useState(isPartyHard());
+
+  if (isParty) {
+    document.body.classList.add('rainbow');
+  } else {
+    document.body.classList.remove('rainbow');
+  }
 
   const l = Array.from(letters);
 
@@ -62,6 +71,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="emoji_overlay">
+        <Button text="Party Mode" emoji="🎉" onClick={() => {
+          togglePartyHard();
+          setIsParty(!isParty);
+        }} />
+      </div>
       <InputBox
         letters={letters}
         onFocusChange={onFocusChange}

@@ -1,0 +1,27 @@
+.emoji_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.8em;
+  border-radius: 5px;
+  border: none;
+  padding-right: 10px;
+  padding-left: 10px;
+  border: 2px solid rgba(255,255,255, 0.3);
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.emoji_button .emoji {
+  margin-right: 10px;
+  font-size: 1.3em;
+}
+
+.emoji_button:hover {
+  background: #33CCCC;
+  animation: color 2s infinite linear;
+}
